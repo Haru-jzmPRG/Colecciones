@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -25,17 +27,35 @@ public class App {
         traductor.put("trabajo", new Palabra("work", "sustantivo"));
         traductor.put("tiempo", new Palabra("time", "sustantivo"));
         traductor.put("vida", new Palabra("life", "sustantivo"));
+        
+        ArrayList<String> palabras = new ArrayList<>(traductor.keySet());
 
-        System.out.println("Ingrese una palabra: ");
-        Scanner sc = new Scanner(System.in);
-        String palabra = sc.nextLine().toLowerCase();
-        sc.close();
+        int aciertos = 0;
+        int fracasos = 0;
 
-        if (traductor.containsKey(palabra)) {
-            Palabra p = traductor.get(palabra);
-            System.out.println(palabra + " = " + p.getTraduccion() + " (" + p.getCategoria() + ")");
-        } else {
-            System.out.println("NULL = La palabra no se encuentra en el traductor."); 
+        Scanner sc2 = new Scanner(System.in);
+            Collections.shuffle(palabras);
+        for (int i = 0; i < 5; i++) {
+            String palabraActual = palabras.get(i);
+            System.out.println("Palabra a traducir " + palabraActual);
+            System.out.print("Ingrese la traducción: ");
+            String palabra2 = sc2.nextLine().toLowerCase();
+            Palabra p = traductor.get(palabraActual);
+            if (p.getTraduccion().equals(palabra2)) {
+                aciertos++;
+                System.out.println("Muy Bien!");
+            } else {
+                fracasos++;
+                System.out.println("Incorrecto, la traducción es: " + p.getTraduccion());
+            }
         }
+
+        sc2.close();
+
+        System.out.println("Resultados:");
+        System.out.println("Aciertos: " + aciertos);
+        System.out.println("Fracasos: " + fracasos);
+
     }
+
 }
