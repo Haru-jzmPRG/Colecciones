@@ -1,41 +1,40 @@
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
 public class App {
-
-    ArrayList<Palabras> palabras = new ArrayList<>();
     public static void main(String[] args) throws Exception {
-        App app = new App();
-        app.addPalabra("Hola", "Hello");
-        app.addPalabra("Adios", "Goodbye");
-        app.addPalabra("Buenos días", "Good morning");
-        app.addPalabra("Buenas tardes", "Good afternoon");
-        app.addPalabra("Buenas noches", "Good night");
-        app.addPalabra("Gracias", "Thank you");
-        app.addPalabra("De nada", "You're welcome");
-        app.addPalabra("Por favor", "Please");
-        app.addPalabra("Lo siento", "I'm sorry");
-        app.addPalabra("Sí", "Yes");
-        app.addPalabra("No", "No");
-        app.addPalabra("¿Cómo estás?", "How are you?");
-        app.addPalabra("Comida", "Food");
-        app.addPalabra("Agua", "Water");
-        app.addPalabra("Casa", "House");
-        app.addPalabra("Casa", "Home");
-        app.addPalabra("Apartamento", "Apartment");
-        app.addPalabra("Coche", "Car");
-        app.addPalabra("Bicicleta", "Bicycle");
-        app.addPalabra("Desatuno", "Breakfast");
-        app.addPalabra("Almuerzo", "Lunch");
-        app.mostrarPalabras();
-    }
+        HashMap<String, String> traductor = new HashMap<String, String>();
 
-    public void addPalabra(String espaniol, String ingles) {
-        palabras.add(new Palabras(espaniol, ingles));
-    }
+        traductor.put("amanecer", "sunrise");
+        traductor.put("desafío", "challenge");
+        traductor.put("esperanza", "hope");
+        traductor.put("libertad", "freedom");
+        traductor.put("fortaleza", "strength");
+        traductor.put("sabiduría", "wisdom");
+        traductor.put("alegría", "joy");
+        traductor.put("tristeza", "sadness");
+        traductor.put("sueño", "dream");
+        traductor.put("recuerdo", "memory");
+        traductor.put("camino", "path / way");
+        traductor.put("cambio", "change");
+        traductor.put("miedo", "fear");
+        traductor.put("amistad", "friendship");
+        traductor.put("amor", "love");
+        traductor.put("éxito", "success");
+        traductor.put("fracaso", "failure");
+        traductor.put("trabajo", "work");
+        traductor.put("tiempo", "time");
+        traductor.put("vida", "life");
 
-    public void mostrarPalabras() {
-        for (Palabras palabra : palabras) {
-            System.out.println(palabra);
+        System.out.println("Ingrese una palabra: ");
+        Scanner sc = new Scanner(System.in);
+        String palabra = sc.nextLine().toLowerCase();
+        sc.close();
+
+        if (traductor.containsKey(palabra)) {
+            System.out.println(palabra + " = " + traductor.get(palabra));
+        } else {
+            System.out.println("NULL = La palabra no se encuentra en el traductor.");
         }
     }
 }
